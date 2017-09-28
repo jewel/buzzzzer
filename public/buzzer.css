@@ -1,0 +1,26 @@
+body {
+  background: black;
+  color: white;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body.current {
+  background: white;
+}
+
+#names {
+  margin: 20px;
+  border: 1px solid black;
+}
+
+#names td {
+  margin: 0;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+#names .current {
+  background: white;
+  color: black;
+}
