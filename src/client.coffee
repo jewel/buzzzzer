@@ -30,8 +30,6 @@ loadSound 'clear2'
 
 names = []
 
-tapped = false
-
 current = null
 
 player_name = ->
@@ -47,11 +45,6 @@ reconnect = ->
     current = obj.current
 
     if obj.current == player_name()
-      if tapped
-        tapped = false
-        try
-          navigator.vibrate 200
-
       $('body').addClass 'current'
     else
       $('body').removeClass 'current'
@@ -93,21 +86,10 @@ reconnect()
 tap = (e) ->
   return if e.target.tagName == 'INPUT'
   e.preventDefault()
-  tapped = true
-
-  try
-    navigator.vibrate 50
-
   try
     socket.emit 'update',
       name: player_name()
       tap: true
 
-stopMouse = false
-$('html').on 'mousedown', (e) ->
-  return if stopMouse
-  tap e
-
-$('html').on 'touchstart', (e) ->
-  stopMouse = true
+$('button').on 'click', (e) ->
   tap e
